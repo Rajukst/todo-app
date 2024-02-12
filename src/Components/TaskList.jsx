@@ -68,7 +68,6 @@ const TaskList = () => {
               <Link to="/add">Add Task</Link>
             </button>
           </div>
-          {/* Search Input */}
           <div className="serarch">
             <input
               type="text"
@@ -78,9 +77,7 @@ const TaskList = () => {
             />
           </div>
         </div>
-        {/* Filtering Options */}
         <div className="filteringOptions">
-          {/* Filter Status */}
           <div className="filterStatus">
             <button onClick={() => setFilterStatus("all")}>All Tasks</button>
             <button onClick={() => setFilterStatus("completed")}>
@@ -90,7 +87,6 @@ const TaskList = () => {
               Incomplete
             </button>
           </div>
-          {/* Filter Priority */}
           <div className="filterPriority">
             <label htmlFor="priority">Filter Priority:</label>
             <select
@@ -132,9 +128,9 @@ const TaskList = () => {
                 <td>
                   <div className="allActions">
                     <div className="firstAction">
-                      <abbr title="Edit">
-                        <i className="fa-solid fa-pen-to-square"></i>
-                      </abbr>
+                    <Link to={`edit/${task.id}`}>
+  <i className="fa-solid fa-pen-to-square"></i>
+</Link>
                     </div>
                     {!task.completed && (
                       <abbr

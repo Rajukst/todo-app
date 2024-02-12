@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import TaskList from './Components/TaskList';
 import AddTask from './Components/AddTask';
-import SingleTask from './Components/SingleTask';
+import EditTask from './Components/EditTask';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Routes>
       <Route path="/" element={<TaskList />}/>
      <Route path="/add" element={<AddTask/>}/>
-     <Route path="/task/:id" element={<SingleTask/>}/>
+     <Route path="/edit/:taskId" element={<EditTask/>} />
       </Routes>
       </BrowserRouter>
  
