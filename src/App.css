@@ -73,7 +73,15 @@ font-size: 18px;
   text-decoration: none !important;
   color: black;
 }
-
+.priority-low {
+  background-color: green !important;
+}
+.priority-medium {
+  background-color: yellow  !important;
+}
+.priority-high {
+  background-color: red !important;
+}
 .active{
   background-color: coral;
 }

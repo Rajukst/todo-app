@@ -127,7 +127,7 @@ const TaskList = () => {
                 <td>{index + 1}</td>
                 <td>{task.title}</td>
                 <td>{task.description}</td>
-                <td>{task.priority}</td>
+                <td className={`priority-${task.priority}`}>{task.priority}</td>
                 <td>{task.completed ? "Completed" : "Incomplete"}</td>
                 <td>
                   <div className="allActions">
