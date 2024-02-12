@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AddTask from "./AddTask";
 
 const TaskList = () => {
-  // Initialize tasks state with data from local storage or an empty array
+  // Initialize tasks state with data from local storage
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("tasks")) || []
   );
@@ -12,14 +12,6 @@ const TaskList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [filterPriority, setFilterPriority] = useState("none");
-
-  // // Function to handle adding a task
-  // const addTask = (task) => {
-  //   const updatedTasks = [...tasks, task];
-  //   setTasks(updatedTasks);
-  //   localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-  // };
-
   // Function to handle deleting a task
   const deleteTask = (id) => {
     const updatedTasks = tasks.filter((task) => task.id !== id);
@@ -35,7 +27,7 @@ const TaskList = () => {
     setTasks(updatedTasks);
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
-
+ 
   // Function to handle filtering tasks based on status and priority
   useEffect(() => {
     let filtered = tasks.filter((task) =>
@@ -51,6 +43,20 @@ const TaskList = () => {
     }
     setFilteredTasks(filtered);
   }, [tasks, searchTerm, filterStatus, filterPriority]);
+
+ // Function to get the count based on filter status
+ const getCount = () => {
+  switch (filterStatus) {
+    case "all":
+      return tasks.length;
+    case "completed":
+      return tasks.filter((task) => task.completed).length;
+    case "incomplete":
+      return tasks.filter((task) => !task.completed).length;
+    default:
+      return tasks.length;
+  }
+};
 
   return (
     <>
@@ -101,12 +107,9 @@ const TaskList = () => {
             </select>
           </div>
         </div>
-        {/* Task Count */}
         <div className="taskCount">
-          <p>Total Tasks: {tasks.length}</p>
+          <p>Total Tasks: {getCount()}</p>
         </div>
-        {/* Task Table */}
-       
         <Table className="mt-5" striped bordered hover>
           <thead>
             <tr>
@@ -122,9 +125,7 @@ const TaskList = () => {
             {filteredTasks.map((task, index) => (
               <tr key={task.id}>
                 <td>{index + 1}</td>
-                <td>
-                  <Link className="titleLink">{task.title}</Link>
-                </td>
+                <td>{task.title}</td>
                 <td>{task.description}</td>
                 <td>{task.priority}</td>
                 <td>{task.completed ? "Completed" : "Incomplete"}</td>
