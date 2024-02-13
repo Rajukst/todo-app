@@ -5,31 +5,42 @@ import { useNavigate, useParams } from "react-router-dom";
 const EditTask = () => {
   const { taskId } = useParams();
   const navigate = useNavigate();
-  const [task, setTask] = useState(null);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("");
+  const [priority, setPriority] = useState("none");
 
   useEffect(() => {
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const foundTask = tasks.find((task) => task.id === taskId);
-    if (foundTask) {
-      setTask(foundTask);
-      setTitle(foundTask.title);
-      setDescription(foundTask.description);
-      setPriority(foundTask.priority);
+    // Fetch task data based on taskId
+    const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const taskToEdit = existingTasks.find(task => task.id === Number(taskId));
+
+    if (taskToEdit) {
+      setTitle(taskToEdit.title);
+      setDescription(taskToEdit.description);
+      setPriority(taskToEdit.priority);
     }
   }, [taskId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const updatedTask = { ...task, title, description, priority };
-    const updatedTasks = tasks.map((t) =>
-      t.id === taskId ? updatedTask : t
-    );
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    console.log(updatedTask);
+
+    // Update task data
+    const updatedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const updatedTaskIndex = updatedTasks.findIndex(task => task.id === Number(taskId));
+    if (updatedTaskIndex !== -1) {
+      updatedTasks[updatedTaskIndex] = {
+        id: Number(taskId),
+        title,
+        description,
+        priority,
+        completed: false,
+      };
+
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    }
+
+    // Navigate back to the home page
     navigate("/");
   };
 

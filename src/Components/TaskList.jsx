@@ -79,11 +79,11 @@ const TaskList = () => {
         </div>
         <div className="filteringOptions">
           <div className="filterStatus">
-            <button onClick={() => setFilterStatus("all")}>All Tasks</button>
-            <button onClick={() => setFilterStatus("completed")}>
+            <button className={filterStatus === "all" ? "activeTab" : ""} onClick={() => setFilterStatus("all")}>All Tasks</button>
+            <button className={filterStatus === "completed" ? "activeTab" : ""} onClick={() => setFilterStatus("completed")}>
               Completed
             </button>
-            <button onClick={() => setFilterStatus("incomplete")}>
+            <button  className={filterStatus === "incomplete" ? "activeTab" : ""} onClick={() => setFilterStatus("incomplete")}>
               Incomplete
             </button>
           </div>

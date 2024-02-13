@@ -82,6 +82,7 @@ font-size: 18px;
 .priority-high {
   background-color: red !important;
 }
-.active{
-  background-color: coral;
+.activeTab {
+  background-color: black !important;
+  color: white;
 }
