@@ -27,7 +27,7 @@ const TaskList = () => {
     setTasks(updatedTasks);
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
- 
+
   // Function to handle filtering tasks based on status and priority
   useEffect(() => {
     let filtered = tasks.filter((task) =>
@@ -44,19 +44,19 @@ const TaskList = () => {
     setFilteredTasks(filtered);
   }, [tasks, searchTerm, filterStatus, filterPriority]);
 
- // Function to get the count based on filter status
- const getCount = () => {
-  switch (filterStatus) {
-    case "all":
-      return tasks.length;
-    case "completed":
-      return tasks.filter((task) => task.completed).length;
-    case "incomplete":
-      return tasks.filter((task) => !task.completed).length;
-    default:
-      return tasks.length;
-  }
-};
+  // Function to get the count based on filter status
+  const getCount = () => {
+    switch (filterStatus) {
+      case "all":
+        return tasks.length;
+      case "completed":
+        return tasks.filter((task) => task.completed).length;
+      case "incomplete":
+        return tasks.filter((task) => !task.completed).length;
+      default:
+        return tasks.length;
+    }
+  };
 
   return (
     <>
@@ -79,11 +79,22 @@ const TaskList = () => {
         </div>
         <div className="filteringOptions">
           <div className="filterStatus">
-            <button className={filterStatus === "all" ? "activeTab" : ""} onClick={() => setFilterStatus("all")}>All Tasks</button>
-            <button className={filterStatus === "completed" ? "activeTab" : ""} onClick={() => setFilterStatus("completed")}>
+            <button
+              className={filterStatus === "all" ? "activeTab" : ""}
+              onClick={() => setFilterStatus("all")}
+            >
+              All Tasks
+            </button>
+            <button
+              className={filterStatus === "completed" ? "activeTab" : ""}
+              onClick={() => setFilterStatus("completed")}
+            >
               Completed
             </button>
-            <button  className={filterStatus === "incomplete" ? "activeTab" : ""} onClick={() => setFilterStatus("incomplete")}>
+            <button
+              className={filterStatus === "incomplete" ? "activeTab" : ""}
+              onClick={() => setFilterStatus("incomplete")}
+            >
               Incomplete
             </button>
           </div>
@@ -128,9 +139,9 @@ const TaskList = () => {
                 <td>
                   <div className="allActions">
                     <div className="firstAction">
-                    <Link to={`edit/${task.id}`}>
-  <i className="fa-solid fa-pen-to-square"></i>
-</Link>
+                      <Link to={`edit/${task.id}`}>
+                        <i className="fa-solid fa-pen-to-square"></i>
+                      </Link>
                     </div>
                     {!task.completed && (
                       <abbr
@@ -140,10 +151,7 @@ const TaskList = () => {
                         <i className="fa-solid fa-bookmark"></i>
                       </abbr>
                     )}
-                    <abbr
-                      title="Delete"
-                      onClick={() => deleteTask(task.id)}
-                    >
+                    <abbr title="Delete" onClick={() => deleteTask(task.id)}>
                       <i className="fa-solid fa-trash"></i>
                     </abbr>
                   </div>

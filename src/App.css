@@ -86,3 +86,22 @@ font-size: 18px;
   background-color: black !important;
   color: white;
 }
+.fa-trash{
+  color: red !important;
+}
+.fa-bookmark{
+  color: green !important;
+}
+
+@media screen and (max-width: 768px){
+  .serarch input{
+    height: 45px;
+    width: fit-content;
+    background: none;
+    outline: none;
+    border: 1px solid darkgray;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    }
+}

@@ -6,7 +6,7 @@ const AddTask = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("none");
-const navigate= useNavigate()
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !description || priority === "none") {
@@ -29,7 +29,7 @@ const navigate= useNavigate()
     setTitle("");
     setDescription("");
     setPriority("none");
-    navigate("/")
+    navigate("/");
   };
 
   return (
@@ -67,7 +67,7 @@ const navigate= useNavigate()
               <option value="high">High</option>
             </select>
           </div>
-          <input className="mt-5" type="submit" value="Add Task" />
+          <input className="mt-5 addButton" type="submit" value="Add Task" />
         </form>
       </Container>
     </>

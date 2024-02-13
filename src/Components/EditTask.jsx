@@ -13,7 +13,7 @@ const EditTask = () => {
   useEffect(() => {
     // Fetch task data based on taskId
     const existingTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const taskToEdit = existingTasks.find(task => task.id === Number(taskId));
+    const taskToEdit = existingTasks.find((task) => task.id === Number(taskId));
 
     if (taskToEdit) {
       setTitle(taskToEdit.title);
@@ -27,7 +27,9 @@ const EditTask = () => {
 
     // Update task data
     const updatedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const updatedTaskIndex = updatedTasks.findIndex(task => task.id === Number(taskId));
+    const updatedTaskIndex = updatedTasks.findIndex(
+      (task) => task.id === Number(taskId)
+    );
     if (updatedTaskIndex !== -1) {
       updatedTasks[updatedTaskIndex] = {
         id: Number(taskId),
@@ -46,7 +48,7 @@ const EditTask = () => {
 
   return (
     <div>
-      <h2>Edit Task</h2>
+      <h2 className="heading">Edit Task</h2>
       <Container>
         <form onSubmit={handleSubmit}>
           <div className="addTitle">
@@ -79,7 +81,7 @@ const EditTask = () => {
               <option value="high">High</option>
             </select>
           </div>
-          <input className="mt-5" type="submit" value="Update Task" />
+          <input className="mt-5 addButton" type="submit" value="Update Task" />
         </form>
       </Container>
     </div>
